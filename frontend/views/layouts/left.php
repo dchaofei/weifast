@@ -33,7 +33,7 @@
                     //['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     //['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => '客户收货地址', 'icon' => 'anchor', 'url' => ['/shipping-address']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Some tools',
@@ -60,7 +60,7 @@
                                 ],
                             ],
                         ],
-                    ],
+                    ],*/
                 ],
             ]
         ) ?>

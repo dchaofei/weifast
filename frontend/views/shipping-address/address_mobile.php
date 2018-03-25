@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="layui-container">
+<div class="layui-">
     <div class="layui-row">
 <blockquote class="layui-elem-quote layui-text">
     亲~~~, 填写收货信息后，我们将尽快为你发货。:)
@@ -22,28 +22,28 @@
 
     <form class="layui-form"  method="POST">
         <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-block">
+            <div class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">姓名</div>
+            <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
                 <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">手机号</label>
-            <div class="layui-input-block">
+            <label class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">手机号</label>
+            <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
                 <input type="tel" name="phone" lay-verify="required|phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">地址</label>
-            <div class="layui-input-block">
+            <div class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">地址</div>
+            <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
                 <input type="text" name="address" lay-verify="required" placeholder="请输入详细地址" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">备注</label>
-            <div class="layui-input-block">
+            <label class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">备注</label>
+            <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
                 <textarea name="comment" placeholder="请输入内容" class="layui-textarea"></textarea>
             </div>
         </div>

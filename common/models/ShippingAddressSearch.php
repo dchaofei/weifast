@@ -18,8 +18,8 @@ class ShippingAddressSearch extends ShippingAddress
     public function rules()
     {
         return [
-            [['id', 'user_id', 'phone'], 'integer'],
-            [['name', 'address', 'comment', 'created', 'updated'], 'safe'],
+            [['id', 'user_id', 'phone', 'status', 'express_number'], 'integer'],
+            [['name', 'address', 'comment', 'express_company', 'created', 'updated'], 'safe'],
         ];
     }
 
@@ -47,6 +47,14 @@ class ShippingAddressSearch extends ShippingAddress
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 30
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'updated' => SORT_DESC,
+                ]
+            ],
         ]);
 
         $this->load($params);
@@ -62,13 +70,16 @@ class ShippingAddressSearch extends ShippingAddress
             'id' => $this->id,
             'user_id' => $this->user_id,
             'phone' => $this->phone,
+            'status' => $this->status,
+            'express_number' => $this->express_number,
             'created' => $this->created,
             'updated' => $this->updated,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
+            ->andFilterWhere(['like', 'comment', $this->comment])
+            ->andFilterWhere(['like', 'express_company', $this->express_company]);
 
         return $dataProvider;
     }

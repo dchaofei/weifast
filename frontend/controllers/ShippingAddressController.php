@@ -5,6 +5,8 @@ namespace frontend\controllers;
 use Yii;
 use common\models\ShippingAddress;
 use common\models\ShippingAddressSearch;
+use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * ShippingAddressController implements the CRUD actions for ShippingAddress model.
  */
-class ShippingAddressController extends Controller
+class ShippingAddressController extends BaseController
 {
     public $enableCsrfValidation = false;
     /**
@@ -21,6 +23,21 @@ class ShippingAddressController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                //'only' => ['logout', 'signup'],
+                'rules' => [
+                    [
+                        'actions' => ['login'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -38,6 +55,21 @@ class ShippingAddressController extends Controller
     {
         $searchModel = new ShippingAddressSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->request->post('hasEditable')) {
+            $id = Yii::$app->request->post('editableKey');
+            $model = $this->findModel($id);
+            $output = '';
+            $posted = current($_POST['ShippingAddress']);
+            $post = ['ShippingAddress' => $posted];
+            if ($model->load($post)) {
+                $model->save();
+                isset($posted['express_number']) && $output = $model->express_number;
+                isset($posted['status']) && $output = $model::$status_list[$model->status];
+                // 其他的这里就忽略了，大致可参考这个title
+            }
+            $out = Json::encode(['output'=>$output, 'message'=>'']);
+            return $out;
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -137,6 +169,11 @@ class ShippingAddressController extends Controller
                 //return $this->redirect(['view', 'id' => $model->id]);
             }
         }
+
+        if ($this->isMobile()) {
+            return $this->render('address_mobile');
+        }
+
         return $this->render('address');
     }
 }

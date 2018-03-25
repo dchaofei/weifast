@@ -8,12 +8,20 @@ $params = array_merge(
 
 return [
     'id' => 'frontend',
+    'name' => 'WeiFast',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-blue',
+                ],
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -44,6 +52,11 @@ return [
             ],
         ],
 
+    ],
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ]
     ],
     'params' => $params,
 ];
