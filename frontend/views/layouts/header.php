@@ -229,41 +229,37 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <i class="glyphicon glyphicon-user"></i>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username ?? '未登录' ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
-
+                        <li class="user-header" style="height: auto">
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                您好: <?= Yii::$app->user->identity->username ?>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Followers</a>
+                            <div class="col-xs-12 text-center">
+                                <a href="#">修改密码</a>
                             </div>
-                            <div class="col-xs-4 text-center">
+                            <!--<div class="col-xs-4 text-center">
                                 <a href="#">Sales</a>
-                            </div>
-                            <div class="col-xs-4 text-center">
+                            </div>-->
+                            <!--<div class="col-xs-6 text-center">
                                 <a href="#">Friends</a>
-                            </div>
+                            </div>-->
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="<?= \yii\helpers\Url::to(['auth/profile']) ?>" class="btn btn-default btn-flat">个人中心</a>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
-                                    ['/site/logout'],
+                                    '注销',
+                                    [\yii\helpers\Url::to(['auth/login/logout'])],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>
                             </div>

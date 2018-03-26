@@ -15,18 +15,16 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-        ],
-        'assetManager' => [
-            'bundles' => [
-                'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue',
-                ],
+            'parsers' => [
+                'application/json' => yii\web\JsonParser::class,
+                'text/json' => yii\web\JsonParser::class,
             ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'loginUrl' => ['auth/login/index'],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -44,14 +42,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-
+        'assetManager' => [
+            'appendTimestamp' => true,
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-purple-light',
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'gridview' => [

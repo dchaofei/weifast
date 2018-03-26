@@ -26,6 +26,10 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    const USER_ENABLE = 10;
+    const USER_DISABLE = 2;
+    const USER_DELETE = 0;
+
 
     /**
      * {@inheritdoc}
@@ -54,6 +58,15 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return UserQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
     }
 
     /**
@@ -185,5 +198,41 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+}
+
+/**
+ * This is the ActiveQuery class for [[AdminUsers]].
+ *
+ * @see AdminUsers
+ */
+class UserQuery extends \yii\db\ActiveQuery
+{
+    public function active()
+    {
+        return $this->andWhere(['!=', 'status', User::USER_DELETE]);
+    }
+
+    public function enable()
+    {
+        return $this->andWhere(['status' => User::USER_ENABLE]);
+    }
+
+    /**
+     * @inheritdoc
+     * @return User[]|array
+     */
+    public function all($db = null)
+    {
+        return parent::all($db);
+    }
+
+    /**
+     * @inheritdoc
+     * @return User|array|null
+     */
+    public function one($db = null)
+    {
+        return parent::one($db);
     }
 }

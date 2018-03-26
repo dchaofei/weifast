@@ -10,18 +10,18 @@ namespace frontend\assets;
 
 
 use yii\web\AssetBundle;
+use yii\web\View;
 
-class LaiUiAsset extends AssetBundle
+class LayUiAsset extends AssetBundle
 {
     public $css = [
         'layui/css/layui.css',
-        'layui/css/layui.mobile.css',
+        //'layui/css/layui.mobile.css',
     ];
     public $js = [
         'layui/layui.all.js',
     ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+    public $jsOptions = [
+        'position' => View::POS_HEAD,
     ];
 }

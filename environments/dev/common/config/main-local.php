@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+            'dsn' => 'mysql:host=localhost;dbname=weifast',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
         ],
         'mailer' => [
@@ -16,5 +16,18 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+    ],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            'generators' => [
+                'crud' => [
+                    'class' => 'yii\gii\generators\crud\Generator',
+                    'templates' => [
+                        'adminlte' => '@vendor/dmstr/yii2-adminlte-asset/gii/templates/crud/simple',
+                    ]
+                ]
+            ],
+        ]
     ],
 ];

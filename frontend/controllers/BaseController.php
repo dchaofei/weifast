@@ -8,10 +8,13 @@
 
 namespace frontend\controllers;
 
+use common\compontents\ControllerCompontent;
 use yii\web\Controller;
 
 class BaseController extends Controller
 {
+    use ControllerCompontent;
+
     public function isMobile()
     {
         // 如果有HTTP_X_WAP_PROFILE则一定是移动设备

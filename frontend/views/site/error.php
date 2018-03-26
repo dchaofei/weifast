@@ -7,21 +7,34 @@
 
 use yii\helpers\Html;
 
-$this->title = $name;
+$this->title = 'WeiFast';
 ?>
-<div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<section class="content">
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+    <div class="error-page">
+        <h2 class="headline text-info"><i class="fa fa-warning text-<?= $exception->getCode() ? 'red' : 'yellow' ?>"></i></h2>
+
+        <div class="error-content">
+            <h3><?= $name ?></h3>
+
+            <p>
+                <?= nl2br(Html::encode($message)) ?>
+            </p>
+
+            <?php if ($exception->getCode()): ?>
+                <p>
+                    访问页面时发生错误，请联系管理员并提供以下信息：
+                </p>
+
+                <pre><?= Html::encode('Error: ' . $exception->getMessage() . PHP_EOL .
+                        'Location: ' . $exception->getFile() . ':' . $exception->getLine() . PHP_EOL .
+                        $exception->getTraceAsString() . PHP_EOL .
+                        date('Y-m-d H:i:s')) ?></pre>
+            <?php endif; ?>
+
+            <a href='<?= Yii::$app->homeUrl ?>'>返回首页</a>
+        </div>
     </div>
 
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
-</div>
+</section>
