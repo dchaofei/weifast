@@ -22,11 +22,19 @@
 
     <form class="layui-form"  method="POST">
         <div class="layui-form-item">
+            <div class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">商品</div>
+            <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
+                <input type="text" value="美牙仪" readonly class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">姓名</div>
             <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
                 <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
             </div>
         </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label layui-col-xs3 layui-col-sm3 layui-col-md3">手机号</label>
             <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">

@@ -21,12 +21,21 @@
     </fieldset>
 
     <form class="layui-form"  method="POST">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="required" autocomplete="off" readonly value="美牙仪" class="layui-input">
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-block">
                 <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
             </div>
         </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-block">
